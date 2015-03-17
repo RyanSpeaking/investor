@@ -1,0 +1,18 @@
+﻿
+var mpSubscribedSymbols=new Array();$(document).ready(function(){initMPAd('mpSponsorAd');if(typeof(BATS)!='undefined'){BATS.addEnableFunc(MPcheckForBATS);BATS.addDisconnectFunc(MPClearSubscribedSymbols);BATS.addReceiveFunc(MPSetPriceChanges);MPcheckForBATS();}});function initMPAd(adId){var objAd=$('#'+adId);if(typeof(OAS_IFRAME_SPONSOR_DC)!='undefined'&&objAd.length>0){var identifier=typeof(adIdentifier)!='undefined'?adIdentifier:'';var path=typeof(adPage)!='undefined'?adPage:window.location.pathname=='/'?'/default.aspx':window.location.pathname;var objSiteAd=OAS_IFRAME_SPONSOR_DC('popularmodbtn',identifier,adId+'_iFrame',path);if(objSiteAd==null){objAd.hide();}
+else if(!objSiteAd.DisplaySponsorshipText){$('#'+adId+' .SponsorshipText').html('&nbsp;').css('width','75px');}}}
+function useBATSForMP(){return($("input[id*=hdnMostViewedSource]").val()=='BATS'||$("input[id*=hdnMostWatchedSource]").val()=='BATS')}
+function MPcheckForBATS(){if(typeof(BATS)!='undefined'&&BATS.Enabled){if(BATS.isConnected()){if(useBATSForMP()){var symbols=MPgetSymbolsForSubscription();if(symbols!=null&&symbols.length>0){BATS.subscribeMulti(symbols);}}}
+else{setTimeout(MPcheckForBATS,1000);}}}
+function MPgetAllStocks(){var symbols=new Array();$("#communityStock .stkSymbol a").each(function(){var symbol=jQuery.trim($(this).text());if(symbol.length>0){symbols.push(symbol);}});return symbols;}
+function MPgetSymbolsForSubscription(){var allSymbols=MPgetAllStocks();if(mpSubscribedSymbols==null||mpSubscribedSymbols.length==0){mpSubscribedSymbols=allSymbols;return mpSubscribedSymbols;}
+else{var newSymbols=new Array();for(var i=0;i<allSymbols.length;i++){var symbol=allSymbols[i];if(jQuery.inArray(symbol,mpSubscribedSymbols)==-1){newSymbols.push(symbol);}}
+if(newSymbols.length>0){mpSubscribedSymbols=mpSubscribedSymbols.concat(newSymbols);return newSymbols;}
+else{return null;}}}
+function MPClearSubscribedSymbols(){mpSubscribedSymbols=null;}
+function MPSetPriceChanges(data){if(useBATSForMP()){var found=null;$("#communityStock .stkSymbol a").each(function(){if(jQuery.trim($(this).text()).toUpperCase()==jQuery.trim(data.Symbol).toUpperCase()){found=$(this);if(found!=null&&found.length>0){var symbol=found.text();var bgColor='';var startPrice=0;var diff=0;var elPrice=found.parent().next().children("span");var elPriceChg=found.parent().next().next().children("span[id*='PriceChg']");var startPrice=$(elPrice).next().val().replace("$","");diff=BATS.getPriceDifference($(elPrice),data.Last.toFixed(2));$(elPrice).text("$"+data.Last.toFixed(2));var priceChange=(data.Last-startPrice).toFixed(2);var priceChangeClass=getMPCss(priceChange);priceChange=Math.abs(priceChange);$(elPriceChg).text(priceChange.toFixed(2));$(elPriceChg).parent().removeClass("up").removeClass("down").addClass(priceChangeClass);$(elPriceChg).next().removeClass("up").removeClass("down").addClass(priceChangeClass);BATS.startHighlight($(elPriceChg),diff);}}});var msg=BATS.getTimeStamp(data,true).replace("Last Update","<br/>Last Update");$("#communityStock .stkFooter span").each(function(){if($(this).html().indexOf("Market Close")==-1){$(this).html(msg);}});}}
+function getMPCss(value){var CssClass="up";if(value>0){CssClass="up";}
+else if(value<0){CssClass="down";}
+return CssClass;}
+$(document).ready(function()
+{$("#highestRatedArt-1 li").hide();$("#highestRatedArt-1 li.all").show();$("#mostViewedArt-2 li").hide();$("#mostViewedArt-2 li.all").show();});$(document).ready(function(){$(".investersCornerTopicsEvents").attr("style","");});

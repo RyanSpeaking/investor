@@ -1,0 +1,1 @@
+PARSELY.pInit({"apikey":"investors.com","settings":{"debug":false,"widget":false,"tracker":true},"customizations":null,"track_ip_addresses":true,"bundle":"/code/ptrack-v0.4.0.js","track_third_party_cookies":true,"uuid":"e551aa76-52db-4131-bd2c-390320bf5184"});

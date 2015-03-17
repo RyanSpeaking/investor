@@ -1,0 +1,342 @@
+Type.registerNamespace('Won.ICom.Code.Services');
+Won.ICom.Code.Services.SiteAjaxService=function() {
+Won.ICom.Code.Services.SiteAjaxService.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+Won.ICom.Code.Services.SiteAjaxService.prototype={
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_path();},
+GetSecureURL:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetSecureURL',false,{},succeededCallback,failedCallback,userContext); },
+SetUsageCount:function(feature,cookiename,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetUsageCount',false,{feature:feature,cookiename:cookiename},succeededCallback,failedCallback,userContext); },
+GetWorkshopData:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetWorkshopData',false,{},succeededCallback,failedCallback,userContext); },
+GetMediaEventData:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMediaEventData',false,{},succeededCallback,failedCallback,userContext); },
+AddToStockList:function(pdcmListID,pstrSymbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddToStockList',false,{pdcmListID:pdcmListID,pstrSymbol:pstrSymbol},succeededCallback,failedCallback,userContext); },
+DeleteStockFromList:function(pdcmListID,pstrSymbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeleteStockFromList',false,{pdcmListID:pdcmListID,pstrSymbol:pstrSymbol},succeededCallback,failedCallback,userContext); },
+DeleteStocksFromList:function(pdcmListID,parrStrSymbols,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeleteStocksFromList',false,{pdcmListID:pdcmListID,parrStrSymbols:parrStrSymbols},succeededCallback,failedCallback,userContext); },
+DeleteStockList:function(pdcmListID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeleteStockList',false,{pdcmListID:pdcmListID},succeededCallback,failedCallback,userContext); },
+RenameStockList:function(pdcmListID,pstrNewListName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RenameStockList',false,{pdcmListID:pdcmListID,pstrNewListName:pstrNewListName},succeededCallback,failedCallback,userContext); },
+SetDefaultStockList:function(pdcmListID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetDefaultStockList',false,{pdcmListID:pdcmListID},succeededCallback,failedCallback,userContext); },
+DuplicateStockList:function(pdcmListID,pstrNewListName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DuplicateStockList',false,{pdcmListID:pdcmListID,pstrNewListName:pstrNewListName},succeededCallback,failedCallback,userContext); },
+CopyStocksToList:function(pdcmDestinationID,parrStrSymbols,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CopyStocksToList',false,{pdcmDestinationID:pdcmDestinationID,parrStrSymbols:parrStrSymbols},succeededCallback,failedCallback,userContext); },
+IsDuplicateStockList:function(pstrNewListName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'IsDuplicateStockList',false,{pstrNewListName:pstrNewListName},succeededCallback,failedCallback,userContext); },
+MoveStocksToList:function(pdcmSourceID,pdcmDestinationID,parrStrSymbols,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MoveStocksToList',false,{pdcmSourceID:pdcmSourceID,pdcmDestinationID:pdcmDestinationID,parrStrSymbols:parrStrSymbols},succeededCallback,failedCallback,userContext); },
+GetStockList:function(pdcmListID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStockList',false,{pdcmListID:pdcmListID},succeededCallback,failedCallback,userContext); },
+GetMarketIndices:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMarketIndices',false,{},succeededCallback,failedCallback,userContext); },
+GetNewsArticlePreviousUrl:function(cat,SourceDocumentID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetNewsArticlePreviousUrl',false,{cat:cat,SourceDocumentID:SourceDocumentID},succeededCallback,failedCallback,userContext); },
+GetNewsArticleNextUrl:function(cat,SourceDocumentID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetNewsArticleNextUrl',false,{cat:cat,SourceDocumentID:SourceDocumentID},succeededCallback,failedCallback,userContext); },
+GetNumOfStocksOnTheMoveData:function(maxNumOfStocksPerList,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetNumOfStocksOnTheMoveData',false,{maxNumOfStocksPerList:maxNumOfStocksPerList},succeededCallback,failedCallback,userContext); },
+GetAddToMyStockListData:function(symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetAddToMyStockListData',false,{symbol:symbol},succeededCallback,failedCallback,userContext); },
+GetAddToMyStockListDataHtml:function(symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetAddToMyStockListDataHtml',false,{symbol:symbol},succeededCallback,failedCallback,userContext); },
+GetStocksOnTheMoveData:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStocksOnTheMoveData',false,{},succeededCallback,failedCallback,userContext); },
+MemberSingIn:function(strEmail,strPassword,blnRemember,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MemberSingIn',false,{strEmail:strEmail,strPassword:strPassword,blnRemember:blnRemember},succeededCallback,failedCallback,userContext); },
+MemberRegistration:function(strEmail,strPassword,strFName,strLName,strCountry,strZip,blnSendEmail,blnContact,strSourceCode,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MemberRegistration',false,{strEmail:strEmail,strPassword:strPassword,strFName:strFName,strLName:strLName,strCountry:strCountry,strZip:strZip,blnSendEmail:blnSendEmail,blnContact:blnContact,strSourceCode:strSourceCode},succeededCallback,failedCallback,userContext); },
+MemberProfile:function(intGender,intAgeGroup,strPhone,intInvesting,intTrades,strInvestments,strJob,strNewsletters,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MemberProfile',false,{intGender:intGender,intAgeGroup:intAgeGroup,strPhone:strPhone,intInvesting:intInvesting,intTrades:intTrades,strInvestments:strInvestments,strJob:strJob,strNewsletters:strNewsletters},succeededCallback,failedCallback,userContext); },
+DoesEmailAddressExist:function(emailAddress,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DoesEmailAddressExist',false,{emailAddress:emailAddress},succeededCallback,failedCallback,userContext); },
+GetPredictiveTickers:function(prefixText,count,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetPredictiveTickers',false,{prefixText:prefixText,count:count},succeededCallback,failedCallback,userContext); },
+GetMyEIBDDefaultSettings:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyEIBDDefaultSettings',false,{},succeededCallback,failedCallback,userContext); },
+SetMyEIBDDefaultSettings:function(pintPreference,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetMyEIBDDefaultSettings',false,{pintPreference:pintPreference},succeededCallback,failedCallback,userContext); },
+GetMyEIBDCurrentPdfVersion:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyEIBDCurrentPdfVersion',false,{},succeededCallback,failedCallback,userContext); },
+GetMyEIBDWebVersionUrl:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyEIBDWebVersionUrl',false,{},succeededCallback,failedCallback,userContext); },
+GetStickyNavAd:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStickyNavAd',false,{},succeededCallback,failedCallback,userContext); },
+SaveMyRoutines:function(routineIds,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SaveMyRoutines',false,{routineIds:routineIds},succeededCallback,failedCallback,userContext); },
+AddToMyRoutines:function(routineID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddToMyRoutines',false,{routineID:routineID},succeededCallback,failedCallback,userContext); },
+DeleteMyMessage:function(messageId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeleteMyMessage',false,{messageId:messageId},succeededCallback,failedCallback,userContext); },
+ValidCheckupSymbol:function(symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidCheckupSymbol',false,{symbol:symbol},succeededCallback,failedCallback,userContext); },
+ValidQuoteSymbol:function(symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidQuoteSymbol',false,{symbol:symbol},succeededCallback,failedCallback,userContext); },
+GetFeaturedStoriesJSON:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetFeaturedStoriesJSON',false,{},succeededCallback,failedCallback,userContext); },
+SaveBetaFeedback:function(subjectId,feedbackId,satisfactionId,text,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SaveBetaFeedback',false,{subjectId:subjectId,feedbackId:feedbackId,satisfactionId:satisfactionId,text:text},succeededCallback,failedCallback,userContext); },
+GetMediaCenterPreRollAd:function(adURL,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMediaCenterPreRollAd',false,{adURL:adURL},succeededCallback,failedCallback,userContext); },
+GetMediaInfoJSON:function(mediaId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMediaInfoJSON',false,{mediaId:mediaId},succeededCallback,failedCallback,userContext); },
+GetInTheNewsJSON:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetInTheNewsJSON',false,{},succeededCallback,failedCallback,userContext); },
+GetMyActiveStocksJSON:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyActiveStocksJSON',false,{},succeededCallback,failedCallback,userContext); },
+IsZipLimited:function(Zip,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'IsZipLimited',false,{Zip:Zip},succeededCallback,failedCallback,userContext); },
+NewsletterSignup:function(_emailAddress,_newsletterId,_userId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'NewsletterSignup',false,{_emailAddress:_emailAddress,_newsletterId:_newsletterId,_userId:_userId},succeededCallback,failedCallback,userContext); },
+IsValidSession:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'IsValidSession',false,{},succeededCallback,failedCallback,userContext); },
+TrackProduct:function(productName,userId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'TrackProduct',false,{productName:productName,userId:userId},succeededCallback,failedCallback,userContext); },
+GetMSToolURL:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMSToolURL',false,{},succeededCallback,failedCallback,userContext); },
+GetMSSiteURL:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMSSiteURL',false,{},succeededCallback,failedCallback,userContext); },
+GetMSSiteURLByRelativePath:function(relativePath,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMSSiteURLByRelativePath',false,{relativePath:relativePath},succeededCallback,failedCallback,userContext); },
+GetStockQuoteUrl:function(pstrSymbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStockQuoteUrl',false,{pstrSymbol:pstrSymbol},succeededCallback,failedCallback,userContext); },
+GetStockCheckupUrl:function(pstrSymbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStockCheckupUrl',false,{pstrSymbol:pstrSymbol},succeededCallback,failedCallback,userContext); },
+GetLeaderboardUrl:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetLeaderboardUrl',false,{},succeededCallback,failedCallback,userContext); },
+LogNavigationSearch:function(url,destUrl,converted,inMerc,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'LogNavigationSearch',false,{url:url,destUrl:destUrl,converted:converted,inMerc:inMerc},succeededCallback,failedCallback,userContext); },
+IsCrawler:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'IsCrawler',false,{},succeededCallback,failedCallback,userContext); },
+ValidateRequest:function(pageUrl,specialEnabled,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateRequest',false,{pageUrl:pageUrl,specialEnabled:specialEnabled},succeededCallback,failedCallback,userContext); },
+GetInvestingTip:function(command,currentIndex,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetInvestingTip',false,{command:command,currentIndex:currentIndex},succeededCallback,failedCallback,userContext); },
+GetNavHoverMenu:function(keys,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetNavHoverMenu',false,{keys:keys},succeededCallback,failedCallback,userContext); },
+ProcessCampaigns:function(currentUrl,rawUrl,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessCampaigns',false,{currentUrl:currentUrl,rawUrl:rawUrl},succeededCallback,failedCallback,userContext); },
+ProcessInterstitial:function(url,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessInterstitial',false,{url:url},succeededCallback,failedCallback,userContext); },
+ProcessSymbolsInSession:function(Symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessSymbolsInSession',false,{Symbol:Symbol},succeededCallback,failedCallback,userContext); },
+ProcessChartsInterstitialAd:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessChartsInterstitialAd',false,{},succeededCallback,failedCallback,userContext); },
+MemberRegistrationTemp:function(strFirstName,strLastName,strCountry,strZip,strEmailAddress,strPassword,blnSendEmail,blnContact,strSourceCode,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MemberRegistrationTemp',false,{strFirstName:strFirstName,strLastName:strLastName,strCountry:strCountry,strZip:strZip,strEmailAddress:strEmailAddress,strPassword:strPassword,blnSendEmail:blnSendEmail,blnContact:blnContact,strSourceCode:strSourceCode},succeededCallback,failedCallback,userContext); },
+MemberTempUpdate:function(emailAddress,intGender,intAgeGroup,intSurveyInvesting,intSurveyTrades,strSurveyOccupation,strSurveryInvestments,strNewsLetters,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MemberTempUpdate',false,{emailAddress:emailAddress,intGender:intGender,intAgeGroup:intAgeGroup,intSurveyInvesting:intSurveyInvesting,intSurveyTrades:intSurveyTrades,strSurveyOccupation:strSurveyOccupation,strSurveryInvestments:strSurveryInvestments,strNewsLetters:strNewsLetters},succeededCallback,failedCallback,userContext); },
+GetUserDetails:function(webUserId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetUserDetails',true,{webUserId:webUserId},succeededCallback,failedCallback,userContext); },
+GetIBD100:function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetIBD100',true,{sortcolumn1:sortcolumn1,sortOrder1:sortOrder1,sortcolumn2:sortcolumn2,sortOrder2:sortOrder2},succeededCallback,failedCallback,userContext); },
+GetCAP20:function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetCAP20',true,{sortcolumn1:sortcolumn1,sortOrder1:sortOrder1,sortcolumn2:sortcolumn2,sortOrder2:sortOrder2},succeededCallback,failedCallback,userContext); },
+GetIBDNewAmerica:function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetIBDNewAmerica',true,{sortcolumn1:sortcolumn1,sortOrder1:sortOrder1,sortcolumn2:sortcolumn2,sortOrder2:sortOrder2},succeededCallback,failedCallback,userContext); },
+GetIBD8585:function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetIBD8585',true,{sortcolumn1:sortcolumn1,sortOrder1:sortOrder1,sortcolumn2:sortcolumn2,sortOrder2:sortOrder2},succeededCallback,failedCallback,userContext); },
+GetStockTables:function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,filter,search,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetStockTables',true,{sortcolumn1:sortcolumn1,sortOrder1:sortOrder1,sortcolumn2:sortcolumn2,sortOrder2:sortOrder2,filter:filter,search:search},succeededCallback,failedCallback,userContext); },
+GetMyStockLists:function(sortColumn1,sortOrder1,sortColumn2,sortOrder2,listId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyStockLists',true,{sortColumn1:sortColumn1,sortOrder1:sortOrder1,sortColumn2:sortColumn2,sortOrder2:sortOrder2,listId:listId},succeededCallback,failedCallback,userContext); },
+GetMyStockListsHtml:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetMyStockListsHtml',true,{},succeededCallback,failedCallback,userContext); },
+GetEtableArticles:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetEtableArticles',true,{},succeededCallback,failedCallback,userContext); },
+GetLatestArticlesInColumn:function(column,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetLatestArticlesInColumn',true,{column:column},succeededCallback,failedCallback,userContext); },
+GetSymbolSearch:function(Symbol,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetSymbolSearch',true,{Symbol:Symbol},succeededCallback,failedCallback,userContext); },
+GetCurrentMarketStatus:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetCurrentMarketStatus',true,{},succeededCallback,failedCallback,userContext); },
+RegisterSMSForCampaign:function(campaign,eventID,phoneNumber,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RegisterSMSForCampaign',false,{campaign:campaign,eventID:eventID,phoneNumber:phoneNumber},succeededCallback,failedCallback,userContext); },
+GetOfferUrl:function(type,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetOfferUrl',true,{type:type},succeededCallback,failedCallback,userContext); },
+GetGoogleTagManager:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetGoogleTagManager',false,{},succeededCallback,failedCallback,userContext); },
+ForgotPasswordReset:function(emailAddress,placeholder,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ForgotPasswordReset',false,{emailAddress:emailAddress,placeholder:placeholder},succeededCallback,failedCallback,userContext); }}
+Won.ICom.Code.Services.SiteAjaxService.registerClass('Won.ICom.Code.Services.SiteAjaxService',Sys.Net.WebServiceProxy);
+Won.ICom.Code.Services.SiteAjaxService._staticInstance = new Won.ICom.Code.Services.SiteAjaxService();
+Won.ICom.Code.Services.SiteAjaxService.set_path = function(value) { Won.ICom.Code.Services.SiteAjaxService._staticInstance.set_path(value); }
+Won.ICom.Code.Services.SiteAjaxService.get_path = function() { return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_path(); }
+Won.ICom.Code.Services.SiteAjaxService.set_timeout = function(value) { Won.ICom.Code.Services.SiteAjaxService._staticInstance.set_timeout(value); }
+Won.ICom.Code.Services.SiteAjaxService.get_timeout = function() { return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_timeout(); }
+Won.ICom.Code.Services.SiteAjaxService.set_defaultUserContext = function(value) { Won.ICom.Code.Services.SiteAjaxService._staticInstance.set_defaultUserContext(value); }
+Won.ICom.Code.Services.SiteAjaxService.get_defaultUserContext = function() { return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_defaultUserContext(); }
+Won.ICom.Code.Services.SiteAjaxService.set_defaultSucceededCallback = function(value) { Won.ICom.Code.Services.SiteAjaxService._staticInstance.set_defaultSucceededCallback(value); }
+Won.ICom.Code.Services.SiteAjaxService.get_defaultSucceededCallback = function() { return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_defaultSucceededCallback(); }
+Won.ICom.Code.Services.SiteAjaxService.set_defaultFailedCallback = function(value) { Won.ICom.Code.Services.SiteAjaxService._staticInstance.set_defaultFailedCallback(value); }
+Won.ICom.Code.Services.SiteAjaxService.get_defaultFailedCallback = function() { return Won.ICom.Code.Services.SiteAjaxService._staticInstance.get_defaultFailedCallback(); }
+Won.ICom.Code.Services.SiteAjaxService.set_path("/Services/SiteAjaxService.asmx");
+Won.ICom.Code.Services.SiteAjaxService.GetSecureURL= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetSecureURL(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.SetUsageCount= function(feature,cookiename,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.SetUsageCount(feature,cookiename,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetWorkshopData= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetWorkshopData(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMediaEventData= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMediaEventData(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.AddToStockList= function(pdcmListID,pstrSymbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.AddToStockList(pdcmListID,pstrSymbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DeleteStockFromList= function(pdcmListID,pstrSymbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DeleteStockFromList(pdcmListID,pstrSymbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DeleteStocksFromList= function(pdcmListID,parrStrSymbols,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DeleteStocksFromList(pdcmListID,parrStrSymbols,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DeleteStockList= function(pdcmListID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DeleteStockList(pdcmListID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.RenameStockList= function(pdcmListID,pstrNewListName,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.RenameStockList(pdcmListID,pstrNewListName,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.SetDefaultStockList= function(pdcmListID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.SetDefaultStockList(pdcmListID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DuplicateStockList= function(pdcmListID,pstrNewListName,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DuplicateStockList(pdcmListID,pstrNewListName,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.CopyStocksToList= function(pdcmDestinationID,parrStrSymbols,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.CopyStocksToList(pdcmDestinationID,parrStrSymbols,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.IsDuplicateStockList= function(pstrNewListName,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.IsDuplicateStockList(pstrNewListName,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MoveStocksToList= function(pdcmSourceID,pdcmDestinationID,parrStrSymbols,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MoveStocksToList(pdcmSourceID,pdcmDestinationID,parrStrSymbols,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStockList= function(pdcmListID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStockList(pdcmListID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMarketIndices= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMarketIndices(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetNewsArticlePreviousUrl= function(cat,SourceDocumentID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetNewsArticlePreviousUrl(cat,SourceDocumentID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetNewsArticleNextUrl= function(cat,SourceDocumentID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetNewsArticleNextUrl(cat,SourceDocumentID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetNumOfStocksOnTheMoveData= function(maxNumOfStocksPerList,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetNumOfStocksOnTheMoveData(maxNumOfStocksPerList,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetAddToMyStockListData= function(symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetAddToMyStockListData(symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetAddToMyStockListDataHtml= function(symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetAddToMyStockListDataHtml(symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStocksOnTheMoveData= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStocksOnTheMoveData(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MemberSingIn= function(strEmail,strPassword,blnRemember,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MemberSingIn(strEmail,strPassword,blnRemember,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MemberRegistration= function(strEmail,strPassword,strFName,strLName,strCountry,strZip,blnSendEmail,blnContact,strSourceCode,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MemberRegistration(strEmail,strPassword,strFName,strLName,strCountry,strZip,blnSendEmail,blnContact,strSourceCode,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MemberProfile= function(intGender,intAgeGroup,strPhone,intInvesting,intTrades,strInvestments,strJob,strNewsletters,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MemberProfile(intGender,intAgeGroup,strPhone,intInvesting,intTrades,strInvestments,strJob,strNewsletters,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DoesEmailAddressExist= function(emailAddress,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DoesEmailAddressExist(emailAddress,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetPredictiveTickers= function(prefixText,count,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetPredictiveTickers(prefixText,count,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyEIBDDefaultSettings= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyEIBDDefaultSettings(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.SetMyEIBDDefaultSettings= function(pintPreference,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.SetMyEIBDDefaultSettings(pintPreference,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyEIBDCurrentPdfVersion= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyEIBDCurrentPdfVersion(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyEIBDWebVersionUrl= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyEIBDWebVersionUrl(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStickyNavAd= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStickyNavAd(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.SaveMyRoutines= function(routineIds,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.SaveMyRoutines(routineIds,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.AddToMyRoutines= function(routineID,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.AddToMyRoutines(routineID,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.DeleteMyMessage= function(messageId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.DeleteMyMessage(messageId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ValidCheckupSymbol= function(symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ValidCheckupSymbol(symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ValidQuoteSymbol= function(symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ValidQuoteSymbol(symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetFeaturedStoriesJSON= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetFeaturedStoriesJSON(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.SaveBetaFeedback= function(subjectId,feedbackId,satisfactionId,text,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.SaveBetaFeedback(subjectId,feedbackId,satisfactionId,text,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMediaCenterPreRollAd= function(adURL,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMediaCenterPreRollAd(adURL,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMediaInfoJSON= function(mediaId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMediaInfoJSON(mediaId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetInTheNewsJSON= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetInTheNewsJSON(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyActiveStocksJSON= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyActiveStocksJSON(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.IsZipLimited= function(Zip,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.IsZipLimited(Zip,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.NewsletterSignup= function(_emailAddress,_newsletterId,_userId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.NewsletterSignup(_emailAddress,_newsletterId,_userId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.IsValidSession= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.IsValidSession(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.TrackProduct= function(productName,userId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.TrackProduct(productName,userId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMSToolURL= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMSToolURL(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMSSiteURL= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMSSiteURL(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMSSiteURLByRelativePath= function(relativePath,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMSSiteURLByRelativePath(relativePath,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStockQuoteUrl= function(pstrSymbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStockQuoteUrl(pstrSymbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStockCheckupUrl= function(pstrSymbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStockCheckupUrl(pstrSymbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetLeaderboardUrl= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetLeaderboardUrl(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.LogNavigationSearch= function(url,destUrl,converted,inMerc,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.LogNavigationSearch(url,destUrl,converted,inMerc,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.IsCrawler= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.IsCrawler(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ValidateRequest= function(pageUrl,specialEnabled,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ValidateRequest(pageUrl,specialEnabled,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetInvestingTip= function(command,currentIndex,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetInvestingTip(command,currentIndex,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetNavHoverMenu= function(keys,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetNavHoverMenu(keys,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ProcessCampaigns= function(currentUrl,rawUrl,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ProcessCampaigns(currentUrl,rawUrl,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ProcessInterstitial= function(url,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ProcessInterstitial(url,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ProcessSymbolsInSession= function(Symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ProcessSymbolsInSession(Symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ProcessChartsInterstitialAd= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ProcessChartsInterstitialAd(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MemberRegistrationTemp= function(strFirstName,strLastName,strCountry,strZip,strEmailAddress,strPassword,blnSendEmail,blnContact,strSourceCode,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MemberRegistrationTemp(strFirstName,strLastName,strCountry,strZip,strEmailAddress,strPassword,blnSendEmail,blnContact,strSourceCode,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.MemberTempUpdate= function(emailAddress,intGender,intAgeGroup,intSurveyInvesting,intSurveyTrades,strSurveyOccupation,strSurveryInvestments,strNewsLetters,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.MemberTempUpdate(emailAddress,intGender,intAgeGroup,intSurveyInvesting,intSurveyTrades,strSurveyOccupation,strSurveryInvestments,strNewsLetters,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetUserDetails= function(webUserId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetUserDetails(webUserId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetIBD100= function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetIBD100(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetCAP20= function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetCAP20(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetIBDNewAmerica= function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetIBDNewAmerica(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetIBD8585= function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetIBD8585(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetStockTables= function(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,filter,search,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetStockTables(sortcolumn1,sortOrder1,sortcolumn2,sortOrder2,filter,search,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyStockLists= function(sortColumn1,sortOrder1,sortColumn2,sortOrder2,listId,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyStockLists(sortColumn1,sortOrder1,sortColumn2,sortOrder2,listId,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetMyStockListsHtml= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetMyStockListsHtml(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetEtableArticles= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetEtableArticles(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetLatestArticlesInColumn= function(column,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetLatestArticlesInColumn(column,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetSymbolSearch= function(Symbol,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetSymbolSearch(Symbol,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetCurrentMarketStatus= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetCurrentMarketStatus(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.RegisterSMSForCampaign= function(campaign,eventID,phoneNumber,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.RegisterSMSForCampaign(campaign,eventID,phoneNumber,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetOfferUrl= function(type,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetOfferUrl(type,onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.GetGoogleTagManager= function(onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.GetGoogleTagManager(onSuccess,onFailed,userContext); }
+Won.ICom.Code.Services.SiteAjaxService.ForgotPasswordReset= function(emailAddress,placeholder,onSuccess,onFailed,userContext) {Won.ICom.Code.Services.SiteAjaxService._staticInstance.ForgotPasswordReset(emailAddress,placeholder,onSuccess,onFailed,userContext); }
+var gtc = Sys.Net.WebServiceProxy._generateTypedConstructor;
+Type.registerNamespace('Won.ICom.Code');
+if (typeof(Won.ICom.Code.Workshop) === 'undefined') {
+Won.ICom.Code.Workshop=gtc("Won.ICom.Code.Workshop");
+Won.ICom.Code.Workshop.registerClass('Won.ICom.Code.Workshop');
+}
+if (typeof(Won.ICom.Code.MediaEvent) === 'undefined') {
+Won.ICom.Code.MediaEvent=gtc("Won.ICom.Code.MediaEvent");
+Won.ICom.Code.MediaEvent.registerClass('Won.ICom.Code.MediaEvent');
+}
+if (typeof(Won.ICom.Code.Services.StockListResponse) === 'undefined') {
+Won.ICom.Code.Services.StockListResponse=gtc("Won.ICom.Code.Services.StockListResponse");
+Won.ICom.Code.Services.StockListResponse.registerClass('Won.ICom.Code.Services.StockListResponse');
+}
+if (typeof(Won.ICom.Code.GetMarketIndicesResponse) === 'undefined') {
+Won.ICom.Code.GetMarketIndicesResponse=gtc("Won.ICom.Code.GetMarketIndicesResponse");
+Won.ICom.Code.GetMarketIndicesResponse.registerClass('Won.ICom.Code.GetMarketIndicesResponse');
+}
+if (typeof(Won.ICom.Code.Services.NewsArticlesURL) === 'undefined') {
+Won.ICom.Code.Services.NewsArticlesURL=gtc("Won.ICom.Code.Services.NewsArticlesURL");
+Won.ICom.Code.Services.NewsArticlesURL.registerClass('Won.ICom.Code.Services.NewsArticlesURL');
+}
+if (typeof(Won.ICom.Code.Services.SOTMResponse) === 'undefined') {
+Won.ICom.Code.Services.SOTMResponse=gtc("Won.ICom.Code.Services.SOTMResponse");
+Won.ICom.Code.Services.SOTMResponse.registerClass('Won.ICom.Code.Services.SOTMResponse');
+}
+if (typeof(Won.ICom.Code.Services.AddToStockListResponse) === 'undefined') {
+Won.ICom.Code.Services.AddToStockListResponse=gtc("Won.ICom.Code.Services.AddToStockListResponse");
+Won.ICom.Code.Services.AddToStockListResponse.registerClass('Won.ICom.Code.Services.AddToStockListResponse');
+}
+if (typeof(Won.ICom.Code.InTheNewsRecord) === 'undefined') {
+Won.ICom.Code.InTheNewsRecord=gtc("Won.ICom.Code.InTheNewsRecord");
+Won.ICom.Code.InTheNewsRecord.registerClass('Won.ICom.Code.InTheNewsRecord');
+}
+if (typeof(Won.ICom.Code.MyActiveStocks) === 'undefined') {
+Won.ICom.Code.MyActiveStocks=gtc("Won.ICom.Code.MyActiveStocks");
+Won.ICom.Code.MyActiveStocks.registerClass('Won.ICom.Code.MyActiveStocks');
+}
+if (typeof(Won.ICom.Code.Services.PaywallResponse) === 'undefined') {
+Won.ICom.Code.Services.PaywallResponse=gtc("Won.ICom.Code.Services.PaywallResponse");
+Won.ICom.Code.Services.PaywallResponse.registerClass('Won.ICom.Code.Services.PaywallResponse');
+}
+if (typeof(Won.ICom.Code.Services.InvestingTipResponse) === 'undefined') {
+Won.ICom.Code.Services.InvestingTipResponse=gtc("Won.ICom.Code.Services.InvestingTipResponse");
+Won.ICom.Code.Services.InvestingTipResponse.registerClass('Won.ICom.Code.Services.InvestingTipResponse');
+}
+if (typeof(Won.ICom.Code.Services.CampaignResponse) === 'undefined') {
+Won.ICom.Code.Services.CampaignResponse=gtc("Won.ICom.Code.Services.CampaignResponse");
+Won.ICom.Code.Services.CampaignResponse.registerClass('Won.ICom.Code.Services.CampaignResponse');
+}
+Type.registerNamespace('Won.ICom.Code.StockResearch.eTables');
+if (typeof(Won.ICom.Code.StockResearch.eTables.ETablesDataResponse) === 'undefined') {
+Won.ICom.Code.StockResearch.eTables.ETablesDataResponse=gtc("Won.ICom.Code.StockResearch.eTables.ETablesDataResponse");
+Won.ICom.Code.StockResearch.eTables.ETablesDataResponse.registerClass('Won.ICom.Code.StockResearch.eTables.ETablesDataResponse');
+}
+if (typeof(Won.ICom.Code.StockResearch.eTables.ETablesMyStockListsResponse) === 'undefined') {
+Won.ICom.Code.StockResearch.eTables.ETablesMyStockListsResponse=gtc("Won.ICom.Code.StockResearch.eTables.ETablesMyStockListsResponse");
+Won.ICom.Code.StockResearch.eTables.ETablesMyStockListsResponse.registerClass('Won.ICom.Code.StockResearch.eTables.ETablesMyStockListsResponse');
+}
+if (typeof(Won.ICom.Code.StockResearch.eTables.ETablesArticlesResponse) === 'undefined') {
+Won.ICom.Code.StockResearch.eTables.ETablesArticlesResponse=gtc("Won.ICom.Code.StockResearch.eTables.ETablesArticlesResponse");
+Won.ICom.Code.StockResearch.eTables.ETablesArticlesResponse.registerClass('Won.ICom.Code.StockResearch.eTables.ETablesArticlesResponse');
+}
+if (typeof(Won.ICom.Code.StockResearch.eTables.ETablesSymbolSearchResponse) === 'undefined') {
+Won.ICom.Code.StockResearch.eTables.ETablesSymbolSearchResponse=gtc("Won.ICom.Code.StockResearch.eTables.ETablesSymbolSearchResponse");
+Won.ICom.Code.StockResearch.eTables.ETablesSymbolSearchResponse.registerClass('Won.ICom.Code.StockResearch.eTables.ETablesSymbolSearchResponse');
+}
+if (typeof(Won.ICom.Code.Services.MarketStatusResponse) === 'undefined') {
+Won.ICom.Code.Services.MarketStatusResponse=gtc("Won.ICom.Code.Services.MarketStatusResponse");
+Won.ICom.Code.Services.MarketStatusResponse.registerClass('Won.ICom.Code.Services.MarketStatusResponse');
+}
+if (typeof(Won.ICom.Code.OfferType) === 'undefined') {
+Won.ICom.Code.OfferType = function() { throw Error.invalidOperation(); }
+Won.ICom.Code.OfferType.prototype = {RedTrialButton: 1,LeaderBoard: 2,eIBD: 3}
+Won.ICom.Code.OfferType.registerEnum('Won.ICom.Code.OfferType', true);
+}
