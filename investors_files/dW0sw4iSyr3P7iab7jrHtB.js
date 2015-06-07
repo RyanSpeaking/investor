@@ -1,1 +1,0 @@
-Tynt.sc({"d":true,"ap":"Read More At Investor&#x27;s Business Daily:","w":"IBDinvestors","f":"InvestorsBusinessDaily","sic":{}})

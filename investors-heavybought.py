@@ -1,6 +1,7 @@
 import urllib.request
 import xml.etree.ElementTree as ET
 import time
+import re
 from html.parser import HTMLParser
 
 
@@ -34,6 +35,22 @@ class MyHTMLParser(HTMLParser):
 					print("    found="+str(self.found)+", openpair="+str(self.openpair))
 					self.wellformedhtml = self.wellformedhtml + "<div id=\"SOTMUPHTML\">"
 					return
+				elif "stock-checkup" in at and "window.open" in at:
+					print("stock-checkup: " + at)
+					tmparray = at.split("'")
+					print("stock-checkup url: " + tmparray[1])
+					url = "http://www.investors.com" + tmparray[1]
+					response = urllib.request.urlopen(url)
+					checkuphtml = response.read()
+					searchObj = re.search( r'(.*) Composite Rating (.*?) .*', checkuphtml.decode("utf-8"), re.M|re.I)
+					print("composite rating:" + searchObj.group())
+					searchObj2 = re.search( r'>[0-9][0-9]<', searchObj.group(), re.M|re.I)
+					rating = searchObj2.group()[1:3]
+					print("rating:" + rating)
+					self.wellformedhtml = self.wellformedhtml + "Rating:" + rating
+					if int(rating) > 95:
+						self.wellformedhtml = self.wellformedhtml + " worth investing"
+
 
 		print("    found="+str(self.found)+", openpair="+str(self.openpair))
 
