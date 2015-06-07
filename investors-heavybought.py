@@ -5,7 +5,6 @@ import re
 from html.parser import HTMLParser
 
 
-
 def handledata(content):
 	print(content)
 
@@ -17,6 +16,7 @@ class MyHTMLParser(HTMLParser):
 	openpair=0
 	stoptoprint=0
 	startprint=0
+	log=""
 	def handle_starttag(self, tag, attrs):
 		if self.stoptoprint==1:
 			return
@@ -32,26 +32,32 @@ class MyHTMLParser(HTMLParser):
 					self.found = 1
 					self.startpaircount = 1
 					self.openpair=self.openpair + 1
+					self.log=self.log+"    found="+str(self.found)+", openpair="+str(self.openpair)+"\n"
 					print("    found="+str(self.found)+", openpair="+str(self.openpair))
 					self.wellformedhtml = self.wellformedhtml + "<div id=\"SOTMUPHTML\">"
 					return
 				elif "stock-checkup" in at and "window.open" in at:
+					self.log=self.log+"stock-checkup: " + at+"\n"
 					print("stock-checkup: " + at)
 					tmparray = at.split("'")
+					self.log=self.log+"stock-checkup url: " + tmparray[1]+"\n"
 					print("stock-checkup url: " + tmparray[1])
 					url = "http://www.investors.com" + tmparray[1]
 					response = urllib.request.urlopen(url)
 					checkuphtml = response.read()
-					searchObj = re.search( r'(.*) Composite Rating (.*?) .*', checkuphtml.decode("utf-8"), re.M|re.I)
+					searchObj = re.search( r'(.*) Composite Rating (.*?) .*', checkuphtml.decode("utf-8", 'ignore'), re.M|re.I)
+					self.log=self.log+"composite rating:" + searchObj.group()+"\n"
 					print("composite rating:" + searchObj.group())
 					searchObj2 = re.search( r'>[0-9][0-9]<', searchObj.group(), re.M|re.I)
 					rating = searchObj2.group()[1:3]
+					self.log=self.log+"rating:" + rating+"\n"
 					print("rating:" + rating)
-					self.wellformedhtml = self.wellformedhtml + "Rating:" + rating
+					self.wellformedhtml = self.wellformedhtml + "Rating:" + "<a href=\"" + url + "\">" + rating + "</a>"
 					if int(rating) > 95:
 						self.wellformedhtml = self.wellformedhtml + " worth investing"
 
 
+		self.log=self.log+"    found="+str(self.found)+", openpair="+str(self.openpair)+"\n"
 		print("    found="+str(self.found)+", openpair="+str(self.openpair))
 
 		if tag == "script":
@@ -61,12 +67,14 @@ class MyHTMLParser(HTMLParser):
 	def handle_endtag(self, tag):
 		if self.stoptoprint==1:
 			return
+		self.log=self.log+"end tag:"+ tag+"\n"
 		print("end tag:", tag)
 		if self.openpair>0:
 			self.openpair = self.openpair - 1
 			if self.openpair == 0:
 				self.stoptoprint=1
 
+		self.log=self.log+"    found="+str(self.found)+", openpair="+str(self.openpair)+"\n"
 		print("    found="+str(self.found)+", openpair="+str(self.openpair))
 
 
@@ -78,11 +86,14 @@ class MyHTMLParser(HTMLParser):
 	def handle_data(self, data):
 		if self.stoptoprint==1:
 			return
+		self.log=self.log+"data:"+data+"\n"
 		print("data:"+data)
+		self.log=self.log+"    found="+str(self.found)+"\n"
 		print("    found="+str(self.found))
 		if self.found==1:
 			print("    openpair="+str(self.openpair))
 			if self.openpair != 0:
+				self.log=self.log+"    append data"+"\n"
 				print("    append data")
 				self.wellformedhtml = self.wellformedhtml + data
 			else:
@@ -99,7 +110,7 @@ parser = MyHTMLParser()
 #hard code raw data test
 f=open('investors.html','r+b')
 html=f.read()
-parser.feed(html.decode("utf-8"))
+parser.feed(html.decode("utf-8",'ignore'))
 
 # Go parsing
 print("wellformedhtml:")
@@ -111,3 +122,7 @@ filename="stock"+fileid+".html"
 fo=open(filename,'w')
 fo.write("<html>"+parser.wellformedhtml+"</html>")
 fo.close()
+
+flog=open("log.txt",'w', 'utf-8')
+flog.write(parser.log)
+flog.close()
