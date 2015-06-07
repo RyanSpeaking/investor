@@ -1,5 +1,6 @@
 import urllib.request
 import xml.etree.ElementTree as ET
+import time
 from html.parser import HTMLParser
 
 
@@ -22,11 +23,11 @@ class MyHTMLParser(HTMLParser):
 			self.openpair=self.openpair + 1
 
 		print("start tag:",tag, "attrs:", attrs)
-		
+
 		for att in attrs:
 			for at in att:
 				if at == "SOTMUPHTML":
-									
+
 					self.found = 1
 					self.startpaircount = 1
 					self.openpair=self.openpair + 1
@@ -42,7 +43,7 @@ class MyHTMLParser(HTMLParser):
 			self.wellformedhtml = self.wellformedhtml + "<" + tag + ">"
 	def handle_endtag(self, tag):
 		if self.stoptoprint==1:
-			return		
+			return
 		print("end tag:", tag)
 		if self.openpair>0:
 			self.openpair = self.openpair - 1
@@ -50,7 +51,7 @@ class MyHTMLParser(HTMLParser):
 				self.stoptoprint=1
 
 		print("    found="+str(self.found)+", openpair="+str(self.openpair))
-		
+
 
 
 		if tag == "script":
@@ -64,7 +65,7 @@ class MyHTMLParser(HTMLParser):
 		print("    found="+str(self.found))
 		if self.found==1:
 			print("    openpair="+str(self.openpair))
-			if self.openpair != 0:					
+			if self.openpair != 0:
 				print("    append data")
 				self.wellformedhtml = self.wellformedhtml + data
 			else:
@@ -73,16 +74,23 @@ class MyHTMLParser(HTMLParser):
 parser = MyHTMLParser()
 
 # fetch investors.com heavy buy data
-url = ""
-response = urllib.request.urlopen(url)
-html = response.read()
+# url = ""
+# response = urllib.request.urlopen(url)
+# html = response.read()
 #print(html.decode("utf-8"))
 
 #hard code raw data test
-#f=open('investors.html','r+b')
-#html=f.read()
+f=open('investors.html','r+b')
+html=f.read()
 parser.feed(html.decode("utf-8"))
 
 # Go parsing
 print("wellformedhtml:")
 print("<html>"+parser.wellformedhtml+"</html>")
+
+fileid=time.strftime("%Y%m%d%H%M%S")
+filename="stock"+fileid+".html"
+
+fo=open(filename,'w')
+fo.write("<html>"+parser.wellformedhtml+"</html>")
+fo.close()
